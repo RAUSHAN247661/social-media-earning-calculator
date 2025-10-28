@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Influencer Income Estimator</title>
+    <!-- Primary SEO meta -->
+    <meta name="description" content="Estimate your monthly influencer earnings across Instagram, YouTube, TikTok and X/Twitter. Use our calculator to project growth and revenue." />
+    <meta name="keywords" content="influencer income, social media earnings, influencer calculator, Instagram earnings, YouTube revenue, TikTok money" />
+    <link rel="canonical" href="https://example.com/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#6c63ff" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="Influencer Income Estimator" />
+    <meta property="og:title" content="Influencer Income Estimator - Calculate Your Social Media Earnings" />
+    <meta property="og:description" content="Estimate monthly income from Instagram, YouTube, TikTok and X/Twitter with our easy-to-use calculator and growth projections." />
+    <!-- Replace the image below with a 1200x630 (recommended) image for best results on Facebook, LinkedIn and other platforms -->
+    <meta property="og:image" content="/assets/social-share-1200x630.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="fb:app_id" content="" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Influencer Income Estimator - Calculate Your Social Media Earnings" />
+    <meta name="twitter:description" content="Estimate monthly income from Instagram, YouTube, TikTok and X/Twitter with our easy-to-use calculator and growth projections." />
+    <meta name="twitter:image" content="/assets/social-share-1200x630.png" />
+    <meta property="og:image:alt" content="Influencer Income Estimator - calculate your monthly social media earnings" />
+    <meta name="twitter:site" content="@your_twitter_handle" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Structured data JSON-LD: Organization + Website -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "@id": "https://example.com/#organization",
+                    "name": "Influencer Income Estimator",
+                    "url": "https://example.com/",
+                    "logo": "https://example.com/assets/logo.png",
+                    "sameAs": [
+                        "https://www.facebook.com/yourpage",
+                        "https://twitter.com/your_twitter_handle",
+                        "https://www.linkedin.com/company/yourcompany"
+                    ]
+                },
+                {
+                    "@type": "WebSite",
+                    "@id": "https://example.com/#website",
+                    "url": "https://example.com/",
+                    "name": "Influencer Income Estimator",
+                    "publisher": { "@id": "https://example.com/#organization" },
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": "https://example.com/?s={search_term_string}",
+                        "query-input": "required name=search_term_string"
+                    }
+                }
+            ]
+        }
+        </script>
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --primary-light: #8a84ff;
+            --secondary: #ff6584;
+            --text: #333333;
+            --text-light: #666666;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        .dark-theme {
+            --primary: #8a84ff;
+            --primary-light: #6c63ff;
+            --secondary: #ff6584;
+            --text: #f0f0f0;
+            --text-light: #b0b0b0;
+            --bg: #121212;
+            --card-bg: #1e1e1e;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            transition: var(--transition);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg);
+            z-index: 1000;
+            transition: background-color var(--transition);
+        }
+        
+        /* Add padding to the container to account for fixed header */
+        .container {
+            padding-top: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: none;
+            width: 50px;
+            height: 26px;
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: var(--transition);
+        }
+
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .dark-theme .theme-toggle::after {
+            left: calc(100% - 23px);
+        }
+
+        /* Main Content Styles */
+        main {
+            flex: 1;
+            padding: 40px 0;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calculator-card, .results-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: var(--transition);
+        }
+
+        .calculator-card:hover, .results-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--shadow);
+            background: var(--card-bg);
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+
+        .calculate-btn:active {
+            transform: translateY(0);
+        }
+
+        .results-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .results-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .earnings-display {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .earnings-range {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .platform-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            color: var(--text-light);
+        }
+
+        .platform-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .youtube { background: #FF0000; }
+        .tiktok { background: #000000; }
+        .twitter { background: #1DA1F2; }
+    .facebook { background: #1877F2; }
+
+        .chart-container {
+            margin-top: 40px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: var(--transition);
+        }
+
+        .chart-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--card-bg);
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--shadow);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px var(--shadow);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        .social-icon.facebook:hover {
+            background: #1877f2;
+            color: white;
+        }
+
+        .social-icon.twitter:hover {
+            background: #1da1f2;
+            color: white;
+        }
+
+        .social-icon.linkedin:hover {
+            background: #0a66c2;
+            color: white;
+        }
+
+        .social-icon.instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
+        .social-icon.github:hover {
+            background: #333;
+            color: white;
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .earnings-display {
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calculator-card, .results-card, .chart-container {
+                padding: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .earnings-display {
+                font-size: 2rem;
+            }
+        }
+        /* Share button styling */
+        .share-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            border: none;
+            width: 44px;
+            height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: transform 0.15s ease, color 0.15s ease;
+            font-size: 18px;
+        }
+        .share-btn:hover { transform: translateY(-3px); color: var(--primary); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">$</div>
+                <div class="logo-text">Income Calculator</div>
+            </div>
+            <button class="theme-toggle" id="themeToggle"></button>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1>Calculate Your Social Media Earnings</h1>
+                <p>Estimate your potential monthly income based on your social media presence and engagement metrics</p>
+            </section>
+
+            <div class="calculator-container">
+                <div class="calculator-card">
+                    <h2 class="card-title">📊 Calculator</h2>
+                    <div class="form-group">
+                        <label for="platform">Platform</label>
+                        <select id="platform">
+                            <option value="instagram">Instagram</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="twitter">X/Twitter</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="followers">Number of Followers/Subscribers</label>
+                        <input type="number" id="followers" placeholder="e.g., 10000">
+                    </div>
+                    <div class="form-group">
+                        <label for="engagement">Average Engagement Rate (%)</label>
+                        <input type="number" id="engagement" placeholder="e.g., 5" step="0.1" min="0" max="100">
+                    </div>
+                    <div class="form-group" id="viewsContainer">
+                        <label for="views">Average Views (Optional)</label>
+                        <input type="number" id="views" placeholder="e.g., 5000">
+                    </div>
+                    <button class="calculate-btn" id="calculateBtn">Calculate Earnings</button>
+                </div>
+
+                <div class="results-card" id="resultsCard">
+                    <h2 class="card-title">💰 Estimated Earnings</h2>
+                    <div class="earnings-display" id="earningsDisplay">$0</div>
+                    <div class="earnings-range" id="earningsRange">Per Month</div>
+                    <div class="platform-info">
+                        <div class="platform-icon instagram" id="platformIcon">IG</div>
+                        <span id="platformName">Instagram</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h2 class="chart-title">Potential Growth Over Time</h2>
+                <canvas id="earningsChart"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank" class="social-icon facebook" aria-label="Follow us on Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon twitter" aria-label="Follow us on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-icon linkedin" aria-label="Follow us on LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="social-icon instagram" aria-label="Follow us on Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="social-icon github" aria-label="Follow us on GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <div class="copyright">
+                    &copy; 2025 Influencer Income Estimator. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference or default to light
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            
+            // Save theme preference
+            const currentTheme = body.classList.contains('dark-theme') ? 'dark' : 'light';
+            localStorage.setItem('theme', currentTheme);
+        });
+
+        // Platform base rates
+        const platformRates = {
+            instagram: 0.05,
+            youtube: 0.1,
+            facebook: 0.04,
+            tiktok: 0.03,
+            twitter: 0.02
+        };
+
+        // Platform names for display
+        const platformNames = {
+            instagram: 'Instagram',
+            youtube: 'YouTube',
+            facebook: 'Facebook',
+            tiktok: 'TikTok',
+            twitter: 'X/Twitter'
+        };
+
+        // Platform icons
+        const platformIcons = {
+            instagram: 'IG',
+            youtube: 'YT',
+            facebook: 'FB',
+            tiktok: 'TT',
+            twitter: 'X'
+        };
+
+        // Platform colors for chart
+        const platformColors = {
+            instagram: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)',
+            youtube: '#FF0000',
+            facebook: '#1877F2',
+            tiktok: '#000000',
+            twitter: '#1DA1F2'
+        };
+
+        // DOM Elements
+        const platformSelect = document.getElementById('platform');
+        const followersInput = document.getElementById('followers');
+        const engagementInput = document.getElementById('engagement');
+        const viewsContainer = document.getElementById('viewsContainer');
+        const viewsInput = document.getElementById('views');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const resultsCard = document.getElementById('resultsCard');
+        const earningsDisplay = document.getElementById('earningsDisplay');
+        const earningsRange = document.getElementById('earningsRange');
+        const platformIcon = document.getElementById('platformIcon');
+        const platformName = document.getElementById('platformName');
+
+        // Chart initialization
+        const ctx = document.getElementById('earningsChart').getContext('2d');
+        let earningsChart = null;
+
+        // Toggle views input based on platform
+        platformSelect.addEventListener('change', () => {
+            const platform = platformSelect.value;
+
+            // Show views input for video platforms (YouTube, TikTok, Facebook)
+            if (platform === 'youtube' || platform === 'tiktok' || platform === 'facebook') {
+                viewsContainer.style.display = 'block';
+            } else {
+                viewsContainer.style.display = 'none';
+            }
+
+            // Update platform info in results
+            updatePlatformInfo();
+        });
+
+        // Update platform info in results
+        function updatePlatformInfo() {
+            const platform = platformSelect.value;
+            platformIcon.textContent = platformIcons[platform];
+            platformIcon.className = 'platform-icon ' + platform;
+            platformName.textContent = platformNames[platform];
+        }
+
+        // Calculate earnings
+        calculateBtn.addEventListener('click', () => {
+            // Basic validation
+            if (!followersInput.value || !engagementInput.value) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            const platform = platformSelect.value;
+            const followers = parseInt(followersInput.value);
+            const engagement = parseFloat(engagementInput.value);
+            const views = viewsInput.value ? parseInt(viewsInput.value) : 0;
+            
+            // Calculate estimated earnings
+            let estimatedEarnings = followers * (engagement / 100) * platformRates[platform];
+            
+            // Adjust for video platforms if views are provided
+            if ((platform === 'youtube' || platform === 'tiktok') && views > 0) {
+                estimatedEarnings += views * 0.001; // Additional earnings from views
+            }
+            
+            // Format earnings for display
+            const formattedEarnings = formatCurrency(estimatedEarnings);
+            
+            // Calculate range (80% to 120% of estimated earnings)
+            const minEarnings = estimatedEarnings * 0.8;
+            const maxEarnings = estimatedEarnings * 1.2;
+            const formattedMin = formatCurrency(minEarnings);
+            const formattedMax = formatCurrency(maxEarnings);
+            
+            // Update UI
+            earningsDisplay.textContent = formattedEarnings;
+            earningsRange.textContent = `${formattedMin} - ${formattedMax} per month`;
+            
+            // Show results with animation
+            resultsCard.classList.add('show');
+            
+            // Update chart
+            updateChart(estimatedEarnings, platform);
+        });
+
+        // Format currency
+        function formatCurrency(amount) {
+            if (amount >= 1000000) {
+                return '$' + (amount / 1000000).toFixed(1) + 'M';
+            } else if (amount >= 1000) {
+                return '$' + (amount / 1000).toFixed(1) + 'K';
+            } else {
+                return '$' + Math.round(amount);
+            }
+        }
+
+        // Update chart with earnings data
+        function updateChart(earnings, platform) {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const growthData = [];
+            
+            // Generate growth projection (10% monthly growth)
+            let currentEarnings = earnings;
+            for (let i = 0; i < 12; i++) {
+                growthData.push(currentEarnings);
+                currentEarnings *= 1.1; // 10% monthly growth
+            }
+            
+            // Destroy existing chart if it exists
+            if (earningsChart) {
+                earningsChart.destroy();
+            }
+            
+            // Create new chart
+            earningsChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'Projected Monthly Earnings',
+                        data: growthData,
+                        borderColor: platformColors[platform],
+                        backgroundColor: 'rgba(108, 99, 255, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: getComputedStyle(document.body).getPropertyValue('--text')
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Earnings: ' + formatCurrency(context.parsed.y);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: getComputedStyle(document.body).getPropertyValue('--shadow')
+                            },
+                            ticks: {
+                                color: getComputedStyle(document.body).getPropertyValue('--text-light')
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: getComputedStyle(document.body).getPropertyValue('--shadow')
+                            },
+                            ticks: {
+                                color: getComputedStyle(document.body).getPropertyValue('--text-light'),
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize platform info
+        updatePlatformInfo();
+
+        // --- Social share helpers (open share windows and create share URLs) ---
+        function getShareData() {
+            const url = window.location.href;
+            const title = document.title || 'Influencer Income Estimator';
+            const descriptionMeta = document.querySelector('meta[name="description"]');
+            const description = descriptionMeta ? descriptionMeta.getAttribute('content') : '';
+            return { url, title, description };
+        }
+
+        function openPopup(url, w = 660, h = 500) {
+            // Center popup
+            const left = (screen.width / 2) - (w / 2);
+            const top = (screen.height / 2) - (h / 2);
+            window.open(url, '_blank', `toolbar=0,status=0,width=${w},height=${h},top=${top},left=${left}`);
+        }
+
+        function buildShareUrl(network) {
+            const { url, title, description } = getShareData();
+            switch (network) {
+                case 'facebook':
+                    return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                case 'twitter':
+                    return `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+                case 'linkedin':
+                    return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+                case 'whatsapp':
+                    return `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`;
+                case 'email':
+                    return `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(description + '\n\n' + url)}`;
+                default:
+                    return url;
+            }
+        }
+
+        // Attach click handlers to share buttons
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const net = btn.getAttribute('data-network');
+                const shareUrl = buildShareUrl(net);
+                if (net === 'email') {
+                    // mailto will open default mail client
+                    window.location.href = shareUrl;
+                } else {
+                    openPopup(shareUrl, 660, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
