@@ -523,9 +523,89 @@
             font-size: 18px;
         }
         .share-btn:hover { transform: translateY(-3px); color: var(--primary); }
+
+        /* Toast Notification Styles */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .toast {
+            background: var(--card-bg);
+            color: var(--text);
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(120%);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            min-width: 300px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .toast-content {
+            flex-grow: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .toast-message {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px;
+            transition: var(--transition);
+        }
+
+        .toast-close:hover {
+            color: var(--text);
+        }
+
+        .toast.error {
+            border-left: 4px solid #ff4d4d;
+        }
+
+        .toast.success {
+            border-left: 4px solid #00c853;
+        }
+
+        .toast.warning {
+            border-left: 4px solid #ffd600;
+        }
+
+        .toast.info {
+            border-left: 4px solid var(--primary);
+        }
     </style>
 </head>
 <body>
+    <div class="toast-container" id="toastContainer"></div>
     <div class="container">
         <header>
             <div class="logo">
@@ -715,10 +795,86 @@
         }
 
         // Calculate earnings
+        // Toast Notification System
+        function showToast(title, message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            let icon = '';
+            switch(type) {
+                case 'error':
+                    icon = '❌';
+                    break;
+                case 'success':
+                    icon = '✅';
+                    break;
+                case 'warning':
+                    icon = '⚠️';
+                    break;
+                case 'info':
+                default:
+                    icon = 'ℹ️';
+                    break;
+            }
+
+            toast.innerHTML = `
+                <div class="toast-icon">${icon}</div>
+                <div class="toast-content">
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close">×</button>
+            `;
+
+            const toastContainer = document.getElementById('toastContainer');
+            toastContainer.appendChild(toast);
+
+            // Trigger reflow and add show class for animation
+            toast.offsetHeight;
+            toast.classList.add('show');
+
+            // Add click event to close button
+            const closeBtn = toast.querySelector('.toast-close');
+            closeBtn.addEventListener('click', () => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 500);
+            });
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 500);
+                }
+            }, 5000);
+        }
+
         calculateBtn.addEventListener('click', () => {
-            // Basic validation
-            if (!followersInput.value || !engagementInput.value) {
-                alert('Please fill in all required fields');
+            // Enhanced validation with specific messages
+            if (!followersInput.value && !engagementInput.value) {
+                showToast(
+                    'Missing Information',
+                    'Please fill in both Followers and Engagement Rate fields',
+                    'error'
+                );
+                return;
+            }
+            
+            if (!followersInput.value) {
+                showToast(
+                    'Missing Followers',
+                    'Please enter your number of followers/subscribers',
+                    'error'
+                );
+                return;
+            }
+            
+            if (!engagementInput.value) {
+                showToast(
+                    'Missing Engagement Rate',
+                    'Please enter your average engagement rate',
+                    'error'
+                );
                 return;
             }
             
