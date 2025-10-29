@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Influencer Income Estimator</title>
+    <title>Social Media Earnings Calculator | Estimate Influencer Income</title>
     <!-- Primary SEO meta -->
-    <meta name="description" content="Estimate your monthly influencer earnings across Instagram, YouTube, TikTok and X/Twitter. Use our calculator to project growth and revenue." />
-    <meta name="keywords" content="influencer income, social media earnings, influencer calculator, Instagram earnings, YouTube revenue, TikTok money" />
+    <meta name="description" content="Calculate your potential earnings as a social media influencer. Get accurate estimates for Instagram, YouTube, TikTok, Facebook, and X/Twitter revenue based on followers and engagement." />
+    <meta name="keywords" content="influencer income calculator, social media earnings, Instagram money calculator, YouTube revenue estimator, TikTok earnings, influencer salary, social media income" />
     <link rel="canonical" href="https://example.com/" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="theme-color" content="#6c63ff" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Income Calculator">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Performance optimization: DNS prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:site_name" content="Influencer Income Estimator" />
@@ -30,43 +40,53 @@
     <meta name="twitter:image" content="/assets/social-share-1200x630.png" />
     <meta property="og:image:alt" content="Influencer Income Estimator - calculate your monthly social media earnings" />
     <meta name="twitter:site" content="@your_twitter_handle" />
+    <!-- Preload critical resources -->
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/chart.js">
+    
+    <!-- Font loading optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <!-- Structured data JSON-LD: Organization + Website -->
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@graph": [
-                {
-                    "@type": "Organization",
-                    "@id": "https://example.com/#organization",
-                    "name": "Influencer Income Estimator",
-                    "url": "https://example.com/",
-                    "logo": "https://example.com/assets/logo.png",
-                    "sameAs": [
-                        "https://www.facebook.com/yourpage",
-                        "https://twitter.com/your_twitter_handle",
-                        "https://www.linkedin.com/company/yourcompany"
-                    ]
-                },
-                {
-                    "@type": "WebSite",
-                    "@id": "https://example.com/#website",
-                    "url": "https://example.com/",
-                    "name": "Influencer Income Estimator",
-                    "publisher": { "@id": "https://example.com/#organization" },
-                    "potentialAction": {
-                        "@type": "SearchAction",
-                        "target": "https://example.com/?s={search_term_string}",
-                        "query-input": "required name=search_term_string"
-                    }
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Async load non-critical CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <!-- Load Chart.js with defer -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <!-- Structured data JSON-LD: Organization + Website -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://example.com/#organization",
+                "name": "Influencer Income Estimator",
+                "url": "https://raushan247661.github.io/social-media-earning-calculator/",
+                "logo": "https://example.com/assets/logo.png",
+                "sameAs": [
+                    "https://www.facebook.com/yourpage",
+                    "https://twitter.com/your_twitter_handle",
+                    "https://www.linkedin.com/company/yourcompany"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://example.com/#website",
+                "url": "https://raushan247661.github.io/social-media-earning-calculator/",
+                "name": "Influencer Income Estimator",
+                "publisher": { "@id": "https://example.com/#organization" },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://example.com/?s={search_term_string}",
+                    "query-input": "required name=search_term_string"
                 }
-            ]
-        }
-        </script>
+            }
+        ]
+    }
+    </script>
     <style>
         :root {
             --primary: #6c63ff;
@@ -699,10 +719,27 @@
         </div>
     </footer>
 
+    <!-- Service Worker Registration -->
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered successfully');
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+
+    <script>
+        // Defer execution until DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cache DOM elements
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
 
         // Check for saved theme preference or default to light
         const savedTheme = localStorage.getItem('theme') || 'light';
@@ -1046,6 +1083,7 @@
                 }
             });
         });
+    });
     </script>
 </body>
 </html>
